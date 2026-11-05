@@ -1,0 +1,59 @@
+/* Sistema global GSAP + SplitText + ScrollTrigger. */
+.split-word{display:inline-block}
+.hero-copy h1 strong .split-word,
+.hero-copy h1 strong.split-word{
+  background:linear-gradient(180deg,#f0640c,#ec4e01);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.sr-only:not(:focus):not(:active){
+  clip:rect(0 0 0 0)!important;
+  clip-path:inset(50%)!important;
+  height:1px!important;
+  overflow:hidden!important;
+  position:absolute!important;
+  white-space:nowrap!important;
+  width:1px!important;
+}
+
+.logos-marquee{height:84px}
+.logos-track,.logos-set{display:flex;align-items:center;width:max-content;flex:0 0 auto}
+.client-logo{
+  width:232.3725px;height:60.403px;flex:0 0 auto;
+  background:url('../ASSETS/figma/client-logos-v2.svg') no-repeat;
+  background-size:1200% 100%;
+  transform:scale(1);transform-origin:center;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),filter .28s ease;
+  /* Sem will-change permanente nos itens. */
+}
+@media (hover:hover) and (pointer:fine){
+  .client-logo:hover{z-index:2;transform:scale(1.2);filter:brightness(1.18)}
+}
+
+.faq-answer{overflow:hidden}
+
+@media (max-width:1550px){
+  .logos-marquee{height:70px}
+  .client-logo{width:185.833px;height:48.322px}
+}
+@media (max-width:1100px){
+  .logos-marquee{height:58px}
+  .client-logo{width:151px;height:39.252px}
+}
+@media (max-width:680px){
+  .logos-marquee{height:36px}
+  .client-logo{width:93px;height:24.174px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+  .logos-track{transform:none!important}
+}

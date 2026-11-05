@@ -1,0 +1,94 @@
+.privacy-ui{position:relative;z-index:10020;color:#fff;font-family:Satoshi,Arial,sans-serif}
+.cookie-banner[hidden],.cookie-modal[hidden]{display:none!important}
+.cookie-banner{position:fixed;z-index:10020;left:50%;bottom:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;width:min(1120px,calc(100% - 32px));padding:20px 22px;border:1px solid rgba(255,255,255,.16);border-radius:22px;background:rgba(9,10,12,.96);box-shadow:0 20px 70px rgba(0,0,0,.48);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform:translateX(-50%);animation:cookie-banner-enter .72s cubic-bezier(.16,1,.3,1) both}
+.cookie-banner__copy>*{animation:cookie-content-enter .5s cubic-bezier(.22,1,.36,1) both}
+.cookie-banner__copy strong{animation-delay:.16s}
+.cookie-banner__copy p{animation-delay:.23s}
+.cookie-banner__copy a{animation-delay:.3s}
+.cookie-banner__actions .cookie-button{animation:cookie-content-enter .48s cubic-bezier(.22,1,.36,1) both}
+.cookie-banner__actions .cookie-button:nth-child(1){animation-delay:.26s}
+.cookie-banner__actions .cookie-button:nth-child(2){animation-delay:.33s}
+.cookie-banner__actions .cookie-button:nth-child(3){animation-delay:.4s}
+@keyframes cookie-banner-enter{
+  0%{opacity:0;transform:translate(-50%,34px) scale(.975);box-shadow:0 0 0 rgba(0,0,0,0)}
+  65%{border-color:rgba(255,122,42,.32)}
+  100%{opacity:1;transform:translate(-50%,0) scale(1);border-color:rgba(255,255,255,.16);box-shadow:0 20px 70px rgba(0,0,0,.48)}
+}
+@keyframes cookie-content-enter{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.cookie-banner__copy strong{display:block;margin-bottom:5px;font-size:18px}
+.cookie-banner__status{grid-column:1/-1;margin:0;color:#ffad7b;font-size:13px;line-height:1.4}
+.cookie-banner__copy p{max-width:660px;margin:0;color:rgba(255,255,255,.82);font-size:14px;line-height:1.45}
+.cookie-banner__copy a{display:inline-block;margin-top:7px;color:#ff7a2a;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.cookie-banner__actions,.cookie-dialog__actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}
+.cookie-button{min-height:42px;padding:0 17px;border:1px solid transparent;border-radius:999px;color:#fff;font:600 13px/1 Satoshi,Arial,sans-serif;cursor:pointer}
+.cookie-button--primary{background:#f36a24;color:#090a0c;box-shadow:0 8px 24px rgba(236,78,1,.26)}
+.cookie-button--ghost{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+.cookie-button:hover{filter:brightness(1.12)}
+.cookie-button:focus-visible,.cookie-dialog__close:focus-visible,.cookie-option input:focus-visible{outline:3px solid #ff9a61;outline-offset:3px}
+.cookie-modal{position:fixed;z-index:10030;inset:0;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.cookie-dialog{width:min(680px,100%);max-height:min(760px,calc(100svh - 40px));padding:28px;border:1px solid rgba(255,255,255,.15);border-radius:24px;background:#111214;box-shadow:0 28px 100px rgba(0,0,0,.65);overflow:auto}
+.cookie-dialog__header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.cookie-dialog__eyebrow{color:#ff7a2a;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.cookie-dialog h2{margin:5px 0 0;font-size:clamp(28px,5vw,42px);line-height:1;letter-spacing:-.04em}
+.cookie-dialog>p{margin:18px 0;color:rgba(255,255,255,.76);font-size:14px;line-height:1.5}
+.cookie-dialog__close{display:grid;flex:0 0 38px;width:38px;height:38px;padding:0;border:1px solid rgba(255,255,255,.16);border-radius:50%;place-items:center;background:rgba(255,255,255,.06);color:#fff;font-size:25px;line-height:1;cursor:pointer}
+.cookie-options{display:grid;gap:10px;margin:20px 0 24px}
+.cookie-option{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:78px;padding:15px 16px;border:1px solid rgba(255,255,255,.12);border-radius:15px;background:rgba(255,255,255,.035);cursor:pointer}
+.cookie-option strong,.cookie-option small{display:block}
+.cookie-option strong{font-size:15px}
+.cookie-option small{margin-top:4px;color:rgba(255,255,255,.66);font-size:12px;line-height:1.4}
+.cookie-option input{position:relative;flex:0 0 44px;width:44px;height:24px;margin:0;border:1px solid rgba(255,255,255,.24);border-radius:999px;appearance:none;background:#303136;cursor:pointer;transition:background .2s}
+.cookie-option input::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+.cookie-option input:checked{border-color:#ec4e01;background:#ec4e01}
+.cookie-option input:checked::after{transform:translateX(20px)}
+.cookie-option input:disabled{opacity:.78;cursor:not-allowed}
+body.cookie-modal-open{overflow:hidden}
+
+.legal-document-dialog{display:flex;flex-direction:column;width:min(900px,100%);height:min(860px,calc(100svh - 40px));max-height:calc(100svh - 40px);padding:28px;overflow:hidden}
+.legal-document-dialog__header{flex:0 0 auto}
+.legal-document-dialog__description{flex:0 0 auto;margin:14px 0 0!important}
+.legal-document-dialog__meta{display:flex;flex:0 0 auto;flex-wrap:wrap;gap:7px 16px;margin-top:10px;color:rgba(255,255,255,.56);font-size:11px}
+.legal-document-dialog__content{flex:1 1 auto;min-height:0;margin-top:18px;padding:22px 18px 4px;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);overflow:auto;scrollbar-color:#f36a24 rgba(255,255,255,.08);scrollbar-width:thin}
+.legal-document-dialog__content:focus-visible{outline:2px solid #ff9a61;outline-offset:-3px}
+.legal-document-dialog__content .legal-notice{margin:0 0 30px;padding:16px 18px;border-left:4px solid #ec4e01;border-radius:0 13px 13px 0;background:rgba(236,78,1,.09);color:rgba(255,255,255,.88);font-size:14px;line-height:1.55}
+.legal-document-dialog__content section{margin:0 0 36px}
+.legal-document-dialog__content h2{margin:0 0 14px;color:#fff;font-size:clamp(23px,3.2vw,32px);line-height:1.08;letter-spacing:-.03em}
+.legal-document-dialog__content h3{margin:24px 0 10px;color:#fff;font-size:18px}
+.legal-document-dialog__content p,.legal-document-dialog__content li{color:rgba(255,255,255,.76);font-size:14px;line-height:1.68}
+.legal-document-dialog__content p{margin:0 0 13px}
+.legal-document-dialog__content ul,.legal-document-dialog__content ol{display:grid;gap:7px;margin:13px 0;padding-left:22px}
+.legal-document-dialog__content a{color:#ff8a45;text-underline-offset:3px}
+.legal-document-dialog__content .legal-pending{display:inline-flex;padding:3px 8px;border:1px solid rgba(255,153,94,.55);border-radius:999px;color:#ffad7b;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.legal-document-dialog__content .legal-table-wrap{margin:18px 0;overflow-x:auto;border:1px solid rgba(255,255,255,.12);border-radius:13px}
+.legal-document-dialog__content .legal-table{width:100%;min-width:620px;border-collapse:collapse}
+.legal-document-dialog__content .legal-table th,.legal-document-dialog__content .legal-table td{padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.1);text-align:left;vertical-align:top;font-size:12px;line-height:1.45}
+.legal-document-dialog__content .legal-table th{background:rgba(255,255,255,.06);color:#fff}
+.legal-document-dialog__content .legal-table td{color:rgba(255,255,255,.72)}
+.legal-document-loading,.legal-document-error{display:grid;min-height:180px;place-items:center;color:rgba(255,255,255,.68);font-size:14px;text-align:center}
+
+@media (max-width:760px){
+  .cookie-banner{grid-template-columns:1fr;gap:16px;padding:18px}
+  .cookie-banner__actions{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .cookie-banner__actions .cookie-button--primary{grid-column:1/-1;grid-row:1}
+  .cookie-button{padding-inline:13px;font-size:12px}
+  .cookie-dialog{padding:22px 18px;border-radius:19px}
+  .legal-document-dialog{height:calc(100svh - 24px);max-height:calc(100svh - 24px);padding:20px 17px 13px}
+  .legal-document-dialog__content{padding:18px 9px 2px}
+  .legal-document-dialog__content section{margin-bottom:30px}
+  .cookie-option{gap:14px;padding:13px}
+  .cookie-dialog__actions{display:grid;grid-template-columns:1fr 1fr}
+}
+
+@media (max-width:430px){
+  .cookie-banner{bottom:8px;width:calc(100% - 16px)}
+  .cookie-banner__actions,.cookie-dialog__actions{grid-template-columns:1fr}
+  .cookie-banner__actions .cookie-button--primary{grid-column:auto;grid-row:auto}
+  .cookie-option small{font-size:11px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .privacy-ui *{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+}

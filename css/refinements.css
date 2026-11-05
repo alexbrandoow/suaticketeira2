@@ -1,0 +1,589 @@
+/* =========================================================
+   REFINAMENTOS DE RESPONSIVIDADE (carregado por último)
+   Ordem: contato (todas as larguras) → ≥1101 → tablet → mobile
+   Regra de ouro: sem alturas fixas em px, textos ≥ 12px.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   CONTATO — texto à esquerda + formulário em card
+   --------------------------------------------------------- */
+.contact{height:auto;min-height:0;padding:clamp(96px,9vw,150px) 0 clamp(120px,11vw,180px);overflow-x:clip}
+.contact .contact-grid{width:min(1180px,calc(100% - 48px));height:auto;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(44px,7vw,120px);align-items:center}
+.contact .contact-copy{height:auto;min-width:0}
+.contact .contact-copy h2{margin:clamp(18px,1.8vw,28px) 0 clamp(16px,1.6vw,24px)}
+.contact .contact-copy>p{width:auto;max-width:none;color:rgba(255,255,255,.86)}
+
+.contact .contact-form{
+  position:relative;width:100%;height:auto;margin:0;
+  padding:clamp(26px,2.5vw,40px);
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-content:start;
+  border:0;border-radius:clamp(20px,1.8vw,28px);
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.02)),rgba(13,14,16,.9);
+  box-shadow:0 34px 90px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)
+}
+/* borda em degradê laranja */
+.contact .contact-form::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(155deg,rgba(255,112,34,.85),rgba(255,112,34,0) 34%,rgba(255,255,255,0) 66%,rgba(255,112,34,.35));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.contact .contact-form::after{content:"";position:absolute;z-index:-1;right:-12%;top:-14%;width:60%;height:46%;border-radius:50%;background:radial-gradient(closest-side,rgba(236,78,1,.22),transparent);filter:blur(30px);pointer-events:none}
+
+.contact .contact-form>input,
+.contact .contact-form>textarea{
+  width:100%;height:52px;margin:0;padding:0 16px;
+  border:1px solid rgba(255,255,255,.14);border-radius:14px;
+  background:rgba(255,255,255,.06);color:#fff;
+  font-family:inherit;font-size:15px;font-weight:400;line-height:1.25;outline:0;
+  transition:border-color .25s,background-color .25s,box-shadow .25s
+}
+.contact .contact-form>textarea{grid-column:1/-1;height:92px;padding:15px 16px;resize:none}
+.contact .contact-form>input::placeholder,.contact .contact-form>textarea::placeholder{color:rgba(255,255,255,.48);opacity:1}
+.contact .contact-form>input:hover,.contact .contact-form>textarea:hover{border-color:rgba(255,255,255,.28)}
+.contact .contact-form>input:focus,.contact .contact-form>textarea:focus{border-color:var(--orange-bright,#ec4e01);background:rgba(255,255,255,.09);box-shadow:0 0 0 4px rgba(236,78,1,.18);outline:0}
+.contact .contact-form>input:-webkit-autofill{-webkit-text-fill-color:#fff;caret-color:#fff;box-shadow:0 0 0 1000px #1c1d20 inset}
+
+.contact .contact-form fieldset:nth-of-type(n){grid-column:1/-1;width:100%;height:auto;min-width:0;margin:6px 0 0;padding:0;border:0}
+.contact .contact-form legend{display:block;width:100%;margin:0 0 10px;padding:0;font-family:inherit;font-size:15px;font-weight:500;line-height:1.25;color:rgba(255,255,255,.94);white-space:normal;letter-spacing:0}
+
+/* opções como “chips” */
+.contact .choice-grid,.contact .operation-grid,.contact .volume-grid{display:flex;flex-wrap:wrap;gap:8px;height:auto;justify-content:flex-start;grid-template-columns:none}
+.contact .choice-grid label{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:38px;margin:0;padding:0 15px 0 12px;
+  border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.04);
+  font-family:inherit;font-size:13.5px;font-weight:400;line-height:1;color:rgba(255,255,255,.8);white-space:nowrap;cursor:pointer;
+  transition:border-color .25s,background-color .25s,color .25s,transform .25s}
+.contact .choice-grid label:hover{border-color:rgba(255,255,255,.42);color:#fff;transform:translateY(-1px)}
+.contact .choice-grid input{flex:0 0 12px;width:12px;height:12px;margin:0;border:1.5px solid rgba(255,255,255,.7);border-radius:50%;background:transparent;transition:border-color .25s,background-color .25s,box-shadow .25s}
+.contact .choice-grid input:checked{border-color:var(--orange-bright,#ec4e01);background:var(--orange-bright,#ec4e01);box-shadow:inset 0 0 0 2px #15161a}
+@supports selector(:has(*)){
+  .contact .choice-grid label:has(input:checked){border-color:var(--orange-bright,#ec4e01);background:rgba(236,78,1,.18);color:#fff}
+  .contact .choice-grid label:has(input:focus-visible){outline:2px solid var(--orange-bright,#ec4e01);outline-offset:2px}
+}
+
+.contact .contact-form .button{grid-column:1/-1;width:100%;height:56px;min-height:56px;margin-top:8px;padding:0 24px;border-radius:14px;font-size:16px;font-weight:600;letter-spacing:.01em;
+  box-shadow:0 14px 34px rgba(236,78,1,.32);transition:transform .3s,box-shadow .3s,background-color .3s}
+.contact .contact-form .button:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(236,78,1,.45)}
+.contact .contact-form .form-note{grid-column:1/-1;margin:2px 0 0;font-size:13px;line-height:1.35;color:rgba(255,255,255,.5)}
+.contact .contact-form .form-status{grid-column:1/-1;position:static;margin:0;font-size:14px;line-height:1.35;color:var(--orange-bright,#ec4e01)}
+.contact .contact-form .form-required-note{grid-column:1/-1;margin:0;color:rgba(255,255,255,.78);font-size:12px;line-height:1.35}
+.contact .contact-form .form-privacy{grid-column:1/-1;margin:2px 0;color:rgba(255,255,255,.78);font-size:12.5px;line-height:1.45}
+.contact .contact-form .form-privacy a{color:#ff9860;text-decoration:underline;text-underline-offset:3px}
+.contact .contact-form .hp-field{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.contact .contact-form>input::placeholder,.contact .contact-form>textarea::placeholder{color:rgba(255,255,255,.7)}
+.contact .contact-form .form-note{color:rgba(255,255,255,.72)}
+
+.feedback-card .feedback-validation{display:inline-flex;align-items:center;justify-content:center;min-height:24px;height:auto;margin:0 auto 25px;padding:4px 10px;border:1px solid rgba(9,10,12,.2);border-radius:999px;color:rgba(9,10,12,.76);font-size:10px;font-weight:700;line-height:1.2;letter-spacing:.04em;text-transform:uppercase;white-space:normal}
+
+.footer-grid .footer-legal-links{display:flex;flex-wrap:wrap;gap:5px 11px;margin-top:14px;padding:0}
+.footer-grid .footer-legal-links a,.footer-grid .footer-legal-links button{width:auto;height:auto;min-height:0;padding:0;border:0;background:none;color:rgba(255,255,255,.72);font:inherit;font-size:10px;line-height:1.35;text-decoration:underline;text-underline-offset:2px;cursor:pointer;white-space:normal}
+.footer-grid .footer-legal-links button:hover,.footer-grid .footer-legal-links button:focus-visible,.footer-grid .footer-legal-links a:hover,.footer-grid .footer-legal-links a:focus-visible{color:#ff8a45}
+.footer-grid>div>a:not(.footer-cta){color:#fff;transition:color .22s ease}
+.footer-grid>div>a:not(.footer-cta):hover,.footer-grid>div>a:not(.footer-cta):focus-visible{color:var(--orange)}
+.footer-grid .footer-company{display:block;height:auto;min-height:0;margin-top:10px;padding:0;color:rgba(255,255,255,.58);font-size:9px;line-height:1.45;white-space:normal}
+
+/* tablet e abaixo: coluna única, formulário com largura confortável */
+@media (max-width:1100px){
+  .contact{padding:clamp(80px,10vw,110px) 0 clamp(110px,14vw,150px)}
+  .contact .contact-grid{width:min(680px,calc(100% - 40px));grid-template-columns:1fr;gap:clamp(36px,6vw,56px)}
+}
+@media (max-width:560px){
+  .contact .contact-form{grid-template-columns:1fr;padding:22px 18px;gap:12px}
+  .contact .contact-form>textarea{height:84px}
+  .contact .choice-grid label{min-height:40px;font-size:13px}
+  .contact .contact-copy{text-align:center}
+  .contact .contact-copy .eyebrow{margin-inline:auto}
+  .contact .contact-copy h2{font-size:clamp(46px,13vw,58px);margin:22px 0 16px}
+  .contact .contact-copy>p{font-size:clamp(15px,4.2vw,18px);margin-inline:auto}
+}
+
+/* ---------------------------------------------------------
+   HERO — texto "Whitelabel" inteiro (o degradê do texto não cobria o excedente)
+   --------------------------------------------------------- */
+.hero-copy h1 strong{width:max-content;max-width:none;padding-right:.07em}
+
+/* ---------------------------------------------------------
+   1101–1260px: hero fluido (colunas fixas de 450+750 estouravam o container)
+   --------------------------------------------------------- */
+@media (min-width:1101px) and (max-width:1260px){
+  .hero-grid{grid-template-columns:360px minmax(0,1fr)}
+  .hero-copy{width:450px;max-width:none}
+  .hero-visual{width:min(100%,750px);height:auto;aspect-ratio:750/566;justify-self:end}
+  .hero-visual>img{width:100%;height:100%}
+  .hero-note{right:3%;top:19%}
+}
+
+/* ---------------------------------------------------------
+   ≤1550px: textos dos cards de soluções com tamanho legível
+   --------------------------------------------------------- */
+@media (max-width:1550px) and (min-width:1101px){
+  .solution-card:nth-child(-n+4) p{font-size:max(11.5px,.78vw)}
+  .solution-card:nth-child(n+5) p{font-size:max(14px,1.05vw)}
+}
+
+/* ---------------------------------------------------------
+   TABLET 521–1100px
+   --------------------------------------------------------- */
+@media (min-width:521px) and (max-width:1100px){
+  /* hero: mostra o operador/notebook inteiros, sem sangrar demais para fora */
+  .hero-visual{width:min(800px,100vw);height:auto;aspect-ratio:800/580;right:-8vw}
+  .hero-actions,.hero-features{position:relative;z-index:3}
+  .hero-visual>img{width:100%;height:100%}
+  /* soluções: o 7º card ocupa a largura toda (não fica órfão) */
+  .solution-card:nth-child(7){grid-column:1/-1;aspect-ratio:auto;min-height:clamp(240px,34vw,320px)}
+}
+
+/* ---------------------------------------------------------
+   MOBILE ≤520px — legibilidade (a composição escala com --u)
+   --------------------------------------------------------- */
+@media (max-width:520px){
+  :root{--section-hat-size:max(11.5px,calc(10*var(--u)));--section-hat-height:max(26px,calc(23*var(--u)));--section-copy-size:max(14px,calc(12*var(--u)))}
+  .eyebrow,.centered-heading .eyebrow{white-space:nowrap;font-size:max(11.5px,calc(10*var(--u)))}
+
+  /* hero */
+  .hero-copy h1 strong{padding-right:.05em}
+  .hero-actions{flex-wrap:wrap}
+  .hero-actions .button{height:auto;min-height:max(38px,calc(32*var(--u)));padding:8px 16px;font-size:max(12.5px,calc(9.083*var(--u)));gap:8px}
+  .hero-features{width:calc(100% + 8px)}
+  .hero-features li{height:auto;min-height:max(40px,calc(34*var(--u)));padding:8px 10px;gap:7px;font-size:max(10.5px,calc(6.842*var(--u)));line-height:1.15}
+  .hero-features li img{width:max(17px,calc(15*var(--u)));height:max(17px,calc(15*var(--u)))}
+
+  /* soluções: texto legível; cards crescem conforme o conteúdo */
+  .solution-card:nth-child(n){height:auto;min-height:calc(157.587*var(--u))}
+  .solution-card:nth-child(n) p{font-size:max(12px,calc(9.609*var(--u)));line-height:1.28;width:calc(214.28*var(--u))}
+  .solution-card:nth-child(n) h3{font-size:max(24px,calc(26.905*var(--u)))}
+  .solutions-heading h2,.brand-heading h2,.audience-heading h2,.faq-heading h2,.centered-heading h2{white-space:normal}
+  .solutions-heading h2 br,.brand-heading h2 br{display:inline;content:" "}
+
+  /* feedbacks */
+  .feedback-card{height:auto;min-height:calc(232*var(--u))}
+  .feedback-card p{font-size:max(12px,calc(8*var(--u)));line-height:1.35}
+  .feedback-card h3{font-size:max(17px,calc(18*var(--u)))}
+
+  /* faq */
+  .faq-item h3{font-size:max(14px,calc(12*var(--u)))}
+  .faq-item button{height:auto;min-height:max(46px,calc(36*var(--u)));font-size:max(14px,calc(12*var(--u)))}
+  .faq-answer>p{font-size:max(12.5px,calc(10.5*var(--u)));line-height:1.4}
+
+  /* contato (novo form): comportamento fluido */
+  .contact{padding:calc(70*var(--u)) 0 calc(96*var(--u))}
+  .contact .contact-grid{width:calc(100% - 32px);height:auto;gap:30px}
+  .contact .contact-copy{height:auto}
+  .contact .contact-copy h2{width:auto;margin:16px 0 12px}
+  .contact .contact-copy>p{width:auto;max-width:none}
+  .contact .contact-form{width:100%;height:auto;margin:0;padding:22px 18px;border-radius:22px}
+  .contact .contact-form>input,.contact .contact-form>textarea{height:50px;padding:0 14px;font-size:16px;border-radius:12px}
+  .contact .contact-form>textarea{height:84px;padding:14px}
+  .contact .contact-form legend{font-size:15px}
+  .contact .choice-grid label{min-height:40px;font-size:13.5px;padding:0 14px 0 11px}
+  .contact .contact-form .button{height:54px;min-height:54px;font-size:16px;padding:0 20px}
+  .contact .contact-form .form-note{font-size:12.5px}
+
+  /* rodapé */
+  .footer-cta{font-size:max(13px,calc(12*var(--u)))!important}
+}
+
+/* Mantém a proporção intrínseca dos ícones informativos no breakpoint móvel. */
+@media (max-width:520px){
+  .solution-card.card-portal img,.solution-card.card-access img{height:auto!important;object-fit:contain!important}
+}
+
+/* mobile: seções com altura mínima (não fixa) — o conteúdo manda quando o texto cresce */
+@media (max-width:520px){
+  .hero{height:auto;min-height:calc(595*var(--u));padding-bottom:calc(20*var(--u))}
+  .hero-grid{height:auto;min-height:calc(540*var(--u))}
+  .solutions{height:auto;min-height:calc(1455*var(--u));padding-bottom:calc(58*var(--u))}
+  .feedbacks{height:auto;min-height:calc(1176*var(--u))}
+  .faq{height:auto;min-height:calc(600*var(--u))}
+  .site-footer{height:auto;min-height:calc(505*var(--u))}
+  .footer-grid{height:auto}
+}
+
+@media (max-width:520px){
+  /* hero: bloco de texto cresce conforme os botões; "Whitelabel" centralizado */
+  .hero-copy{height:auto;flex:0 0 auto}
+  .hero-copy h1 strong{margin-inline:auto}
+  .hero-actions{row-gap:10px}
+  .hero-grid{gap:calc(18*var(--u))}
+
+  /* soluções: o texto nunca invade a imagem do card */
+  .solution-card.card-portal p,.solution-card.card-report p,.solution-card.card-sales p,.solution-card.card-parking p{width:calc(160*var(--u))}
+  .solution-card.card-bar p,.solution-card.card-cashless p,.solution-card.card-access p{width:calc(168*var(--u))}
+  .solution-card.card-bar h3,.solution-card.card-cashless h3,.solution-card.card-access h3{width:calc(190*var(--u))}
+
+  /* rodapé: linhas automáticas e links sem "espremer" */
+  .footer-grid{grid-template-rows:auto auto auto}
+  .footer-grid a,.footer-grid span{flex:none;height:auto;min-height:calc(22*var(--u));line-height:calc(22*var(--u))}
+  .footer-grid>div:nth-of-type(3) .footer-cta{margin-top:calc(14*var(--u))}
+}
+
+@media (max-width:520px){
+  /* lado do texto x lado da imagem (margens do desktop vazavam para o mobile) */
+  .solution-card.card-bar h3,.solution-card.card-bar p,
+  .solution-card.card-cashless h3,.solution-card.card-cashless p,
+  .solution-card.card-access h3,.solution-card.card-access p{margin-left:auto;margin-right:0}
+  .solution-card.card-portal h3,.solution-card.card-portal p,
+  .solution-card.card-report h3,.solution-card.card-report p,
+  .solution-card.card-sales h3,.solution-card.card-sales p,
+  .solution-card.card-parking h3,.solution-card.card-parking p{margin-left:0;margin-right:auto;text-align:left}
+}
+
+@media (min-width:521px) and (max-width:1100px){
+  /* 7º card (largura total): imagem à direita, texto à esquerda */
+  .solution-card.card-parking img{left:auto;top:auto;right:6%;bottom:-10%;width:min(30%,260px);height:auto;transform:none}
+  .solution-card.card-parking p{max-width:52%}
+  /* público: colagem um pouco maior que a tela (como no mobile) para os cards ficarem legíveis */
+  .audience-collage{width:min(1328px,116vw)}
+}
+@media (min-width:521px) and (max-width:1100px){.solution-card.card-report p{max-width:54%}}
+
+/* mobile: carrossel do processo sem cortar a base do card ativo */
+@media (max-width:520px){
+  .process-carousel{height:auto;min-height:calc(318*var(--u));overflow:visible}
+  .process-stage{height:calc(302.118*var(--u))}
+}
+
+/* =========================================================
+   PADRONIZAÇÃO — Hat · Título · Texto de apoio (todas as seções)
+   Mesmos tamanhos em todas as seções; só mudam por breakpoint.
+   ========================================================= */
+:root{--section-hat-width:180px}
+@media (max-width:1100px){:root{--section-hat-width:156px}}
+@media (max-width:520px){:root{--section-hat-width:max(124px,calc(116*var(--u)))}}
+
+.eyebrow.eyebrow.eyebrow{
+  box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;
+  width:var(--section-hat-width);min-width:var(--section-hat-width);
+  height:var(--section-hat-height);min-height:var(--section-hat-height);
+  padding:0;font-size:var(--section-hat-size);font-weight:500;line-height:1;letter-spacing:0;white-space:nowrap
+}
+/* título das seções: mesma escala, mesmo entrelinha e espaçamento */
+.centered-heading h2,.process-copy h2,.solutions-heading h2,.audience-heading h2,.faq-heading h2,
+.contact .contact-copy h2,.feedback-content h2,.trusted h3{
+  font-size:var(--section-title-size);line-height:.94;letter-spacing:-.04em
+}
+/* texto de apoio */
+.centered-heading>p,.process-copy>p,.contact .contact-copy>p{font-size:var(--section-copy-size);line-height:1.22}
+
+/* =========================================================
+   NAVBAR — botão com brilho que varre + preenchimento no hover
+   ========================================================= */
+.nav-cta,.footer-cta{position:relative;overflow:hidden;isolation:isolate;
+  transition:color .35s,border-color .35s,box-shadow .4s,transform .4s cubic-bezier(.22,1,.36,1)}
+.nav-cta::after,.footer-cta::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--orange);transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.nav-cta::before,.footer-cta::before{content:"";position:absolute;top:0;bottom:0;left:0;width:55%;z-index:-1;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:translateX(-130%) skewX(-18deg)}
+.nav-cta span,.footer-cta span{display:inline-block;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.nav-cta:hover,.nav-cta:focus-visible,.footer-cta:hover,.footer-cta:focus-visible{color:#fff;transform:translateY(-1px);box-shadow:0 10px 28px rgba(236,78,1,.38),0 0 0 4px rgba(236,78,1,.16)}
+.nav-cta:hover::after,.nav-cta:focus-visible::after,.footer-cta:hover::after,.footer-cta:focus-visible::after{transform:scaleX(1)}
+.nav-cta:hover::before,.nav-cta:focus-visible::before,.footer-cta:hover::before,.footer-cta:focus-visible::before{animation:ctaShine .85s cubic-bezier(.4,0,.2,1)}
+.nav-cta:hover span,.nav-cta:focus-visible span,.footer-cta:hover span,.footer-cta:focus-visible span{transform:translateX(6px)}
+.footer-cta{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--orange);background:transparent!important;color:var(--orange)}
+.footer-cta span{width:auto;height:auto!important;min-height:0!important;margin-left:10px;padding:0!important;font-size:1.1em;line-height:1!important}
+@keyframes ctaShine{to{transform:translateX(330%) skewX(-18deg)}}
+@keyframes ctaIdle{0%,62%{transform:translateX(-130%) skewX(-18deg)}100%{transform:translateX(330%) skewX(-18deg)}}
+@media (prefers-reduced-motion:no-preference){
+  .nav-cta:not(:hover):not(:focus-visible)::before,.footer-cta:not(:hover):not(:focus-visible)::before{animation:ctaIdle 5.5s cubic-bezier(.4,0,.2,1) 1.2s infinite}
+}
+
+/* Mesmo efeito do CTA da navbar nos botões primários da hero e do formulário */
+.hero-actions .button-primary,.contact-form .button-primary{
+  position:relative;overflow:hidden;isolation:isolate;
+  transition:color .35s,border-color .35s,box-shadow .4s,transform .4s cubic-bezier(.22,1,.36,1)
+}
+.hero-actions .button-primary::after,.contact-form .button-primary::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(100deg,var(--orange),var(--orange-bright),#ff762d);
+  transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.22,1,.36,1)
+}
+.hero-actions .button-primary::before,.contact-form .button-primary::before{
+  content:"";position:absolute;z-index:1;top:0;bottom:0;left:0;width:55%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.42),transparent);
+  transform:translateX(-130%) skewX(-18deg)
+}
+.hero-actions .button-primary>*,.contact-form .button-primary>*{position:relative;z-index:2}
+.hero-actions .button-primary img{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.hero-actions .button-primary:hover,.hero-actions .button-primary:focus-visible,
+.contact-form .button-primary:hover,.contact-form .button-primary:focus-visible{
+  color:#fff;transform:translateY(-2px);
+  box-shadow:0 14px 34px rgba(236,78,1,.42),0 0 0 4px rgba(236,78,1,.16)
+}
+.hero-actions .button-primary:hover::after,.hero-actions .button-primary:focus-visible::after,
+.contact-form .button-primary:hover::after,.contact-form .button-primary:focus-visible::after{transform:scaleX(1)}
+.hero-actions .button-primary:hover::before,.hero-actions .button-primary:focus-visible::before,
+.contact-form .button-primary:hover::before,.contact-form .button-primary:focus-visible::before{animation:ctaShine .85s cubic-bezier(.4,0,.2,1)}
+.hero-actions .button-primary:hover img,.hero-actions .button-primary:focus-visible img{transform:translateX(6px) rotate(-90deg)}
+@media (prefers-reduced-motion:no-preference){
+  .hero-actions .button-primary:not(:hover):not(:focus-visible)::before,
+  .contact-form .button-primary:not(:hover):not(:focus-visible)::before{animation:ctaIdle 5.5s cubic-bezier(.4,0,.2,1) 1.2s infinite}
+}
+
+/* =========================================================
+   HERO — efeito vidro (botão contorno, cards de features e card da frase)
+   ========================================================= */
+.hero-actions .button-ghost,.hero-features li{position:relative}
+.hero-actions .button-ghost,.hero-features li,.hero-note{
+  background:rgba(39,39,39,.2);
+  border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  box-shadow:inset 0 1px 3px rgba(255,255,255,.04);
+  color:#fff
+}
+.hero-actions .button-ghost{
+  background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(39,39,39,.16));border-color:#848484
+}
+.hero-note{background:rgba(236,78,1,.1)}
+/* O brilho fica nas bordas, preservando a transparencia do fundo. */
+.hero-actions .button-ghost::before,.hero-features li::before,.hero-note::before{
+  content:none}
+.hero-actions .button-ghost{transition:background-color .35s,border-color .35s,box-shadow .35s,transform .35s cubic-bezier(.22,1,.36,1)}
+.hero-actions .button-ghost:hover,.hero-actions .button-ghost:focus-visible{
+  border-color:rgba(255,255,255,.55);transform:translateY(-2px);
+  box-shadow:inset 0 1px 3px rgba(255,255,255,.12),0 6px 18px rgba(0,0,0,.16)}
+.hero-features li,.hero-note{overflow:hidden}
+.hero-actions .button-ghost>*,.hero-features li>*,.hero-note>*{position:relative;z-index:1}
+
+/* =========================================================
+   FEEDBACKS (mobile): cards na horizontal
+   esquerda = foto, nome, estrelas · direita = depoimento
+   ========================================================= */
+@media (max-width:680px){
+  .feedbacks .feedback-content{width:calc(100% - 32px);max-width:560px}
+  .feedbacks .feedback-grid{width:100%;grid-template-columns:1fr;gap:14px;margin-inline:auto}
+  .feedbacks .feedback-card{
+    display:grid;width:100%;height:auto;min-height:0;box-sizing:border-box;
+    grid-template-columns:minmax(92px,32%) minmax(0,1fr);
+    grid-template-areas:"avatar text" "name text" "stars text";
+    grid-template-rows:auto auto auto;align-content:center;align-items:center;justify-items:center;
+    column-gap:16px;row-gap:0;text-align:left;padding:18px 16px;border-radius:14px
+  }
+  .feedbacks .feedback-card .avatar{grid-area:avatar;width:68px;height:68px;margin:0 0 8px}
+  .feedbacks .feedback-card h3{grid-area:name;margin:0 0 4px;font-size:16px;line-height:1.15;text-align:center}
+  .feedbacks .feedback-card>img{grid-area:stars;width:74px;height:auto;margin:0}
+  .feedbacks .feedback-card p{grid-area:text;margin:0;font-size:13px;line-height:1.42;text-align:left;justify-self:stretch;align-self:center;padding-left:14px;border-left:1px solid rgba(0,0,0,.12)}
+}
+
+/* =========================================================
+   PÚBLICO (≤900px): seção ocupa a tela toda, fundo cobrindo tudo,
+   colagem vertical que cabe na largura (nenhum card cortado)
+   ========================================================= */
+@media (max-width:900px){
+  .audience{height:100vh;min-height:640px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3.2vh,34px);padding:calc(var(--header-h,64px) + 8px) 0 28px;box-sizing:border-box}
+  .audience .audience-bg{left:0;top:0;width:100%;height:100%;transform:none;object-fit:cover;object-position:64% center}
+  /* transições suaves do fundo com as seções vizinhas (sem faixa preta) */
+  .audience::before,.audience::after{content:"";position:absolute;left:0;right:0;z-index:1;pointer-events:none}
+  .audience::before{top:0;height:14%;background:linear-gradient(to top,rgba(9,10,12,0),#090a0c)}
+  .audience::after{bottom:0;height:16%;background:linear-gradient(to bottom,rgba(9,10,12,0),#090a0c)}
+  .audience .audience-heading{position:relative;z-index:5;top:auto;left:auto;transform:none;width:calc(100% - 32px);margin:0;padding:0}
+  .audience .audience-heading h2{width:100%;margin-top:16px}
+  .audience .audience-collage{position:relative;z-index:3;left:auto;top:auto;transform:none;width:min(calc(100% - 24px),580px);height:auto;aspect-ratio:100/118;margin:0 auto}
+
+  .audience .audience-people{left:12%;top:16.9%;width:76%}
+  .audience .audience-slogan{left:2%;top:1.7%;width:40%}
+  .audience .audience-selection{left:58%;top:0;width:40%}
+  .audience .audience-event{left:0;top:22.9%;width:30%}
+  .audience .audience-ticket{left:3%;top:50.8%;width:32%}
+  .audience .audience-payment{left:63%;top:30.5%;width:36%}
+  .audience .audience-success{left:50%;top:66%;width:46%}
+  .audience .audience-shadow{top:44%;bottom:-60%;
+    background:linear-gradient(180deg,rgba(9,10,12,0) 0%,rgba(9,10,12,.4) 22%,rgba(9,10,12,.85) 36%,#090a0c 44%,#090a0c 100%)}
+}
+
+/* Publico mobile: Figma 507:875, sombra por cima do casal e abaixo dos cards.
+   A imagem termina em 71.2% da colagem; a sombra fica opaca em 70.4%.
+   Os stops consideram a extensao inferior da camada, nao a altura da foto. */
+@media (max-width:520px){
+  .audience{
+    height:clamp(590px,155vw,680px);min-height:0;justify-content:flex-start;
+    gap:12px;padding:48px 0 18px
+  }
+  .audience .audience-heading{flex:0 0 auto}
+  .audience .audience-heading h2{margin-top:12px}
+  .audience .audience-collage{
+    flex:0 0 auto;width:min(calc(100% - 40px),420px);margin:0 auto
+  }
+  .audience .audience-shadow{
+    top:52%;bottom:-60%;
+    background:linear-gradient(180deg,
+      rgba(9,10,12,0) 0%,
+      rgba(9,10,12,.12) 3%,
+      rgba(9,10,12,.42) 7%,
+      rgba(9,10,12,.78) 12%,
+      #090a0c 17%,#090a0c 100%)
+  }
+}
+
+/* FEEDBACKS mobile: ocupa a tela, conteúdo centralizado (sem sobra preta) e título legível sobre os pontos */
+@media (max-width:680px){
+  .feedbacks{height:auto;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--header-h,64px) + 20px) 0 56px;box-sizing:border-box}
+  .feedbacks::before{content:"";position:absolute;z-index:1;inset:0 0 auto 0;height:44%;background:linear-gradient(to bottom,rgba(0,0,0,.72),rgba(0,0,0,0));pointer-events:none}
+  .feedbacks .feedback-content{position:relative;z-index:2}
+  .feedbacks .feedback-content h2{text-shadow:0 2px 22px rgba(0,0,0,.65)}
+}
+
+/* =========================================================
+   AJUSTES FINAIS DE LAYOUT NO MOBILE
+   ========================================================= */
+@media (max-width:520px){
+  /* Marca entre formulario e rodape, com CTA inferior centralizado. */
+  .site-footer{
+    height:auto;min-height:0;padding:calc(100*var(--u)) 0 0;overflow:hidden
+  }
+  .footer-watermark{
+    left:50%;top:calc(14*var(--u));width:calc(396*var(--u));height:auto;
+    transform:translateX(-50%);object-fit:contain
+  }
+  .footer-grid{top:0}
+  .footer-grid>div:nth-of-type(3) .footer-cta{
+    align-self:center!important;margin-left:auto;margin-right:auto
+  }
+}
+
+/* Hero mobile alinhada ao frame de referencia. */
+@media (max-width:520px){
+  .hero{height:auto;min-height:calc(595*var(--u));padding:calc(76*var(--u)) 0 0}
+  .hero-bg{left:calc(-707*var(--u));top:calc(-63*var(--u))}
+  .hero::before{
+    content:"";position:absolute;z-index:1;pointer-events:none;
+    left:calc(35*var(--u));top:calc(180*var(--u));
+    width:calc(416*var(--u));height:calc(386.286*var(--u));opacity:.4;
+    background:url('../ASSETS/figma/hero-crowd.png') calc(-166.05*var(--u)) calc(7.866*var(--u))/calc(672.665*var(--u)) calc(378.575*var(--u)) no-repeat;
+    -webkit-mask:url('../ASSETS/figma/hero-crowd-mobile-mask.svg') center/100% 100% no-repeat;
+    mask:url('../ASSETS/figma/hero-crowd-mobile-mask.svg') center/100% 100% no-repeat
+  }
+  .hero-grid{width:calc(387.765*var(--u));height:auto;min-height:0;gap:0}
+  .hero-copy{width:100%;height:auto;flex:0 0 auto}
+  .hero-copy h1{
+    position:relative;left:calc(-5*var(--u));font-size:calc(27.366*var(--u));
+    line-height:calc(28.901*var(--u));letter-spacing:0;
+    text-box-trim:trim-both;text-box-edge:cap alphabetic
+  }
+  /* Compensate the leading of the first line in Figma's mixed-size text node. */
+  .hero-copy h1 .hero-kicker{font-size:calc(28.427*var(--u));line-height:1}
+  .hero-copy h1 strong{font-size:calc(62.357*var(--u));line-height:calc(51.642*var(--u));padding:0}
+  .hero-copy h1>span:nth-child(3){line-height:calc(29.848*var(--u))}
+  .hero-copy h1 b{font-size:calc(28.945*var(--u))}
+  .hero-actions{
+    width:100%;margin:calc(19.864*var(--u)) 0 0;gap:calc(15.28*var(--u));
+    flex-wrap:nowrap;row-gap:0;transform:none
+  }
+  .hero-actions .button{
+    flex:0 0 auto;height:calc(29.298*var(--u));min-height:0;
+    padding:0 calc(15.209*var(--u));gap:calc(9.576*var(--u));
+    font-size:calc(10.115*var(--u));font-weight:400;line-height:1
+  }
+  .hero-actions .button-primary{width:calc(171.455*var(--u));height:calc(27.962*var(--u))}
+  .hero-actions .button-ghost{width:calc(138.159*var(--u));border-width:calc(.563*var(--u))}
+  .hero-actions .button-primary img{width:calc(11.064*var(--u));height:calc(16.462*var(--u))}
+  .hero-actions .button-ghost img{width:calc(16.039*var(--u));height:calc(16.046*var(--u))}
+  .hero-features{
+    left:auto;transform:none;width:calc(326*var(--u));margin:calc(18.838*var(--u)) auto 0;
+    gap:calc(4*var(--u));align-items:center
+  }
+  .hero-features li{
+    flex:1 1 0;min-width:0;height:calc(38.235*var(--u));min-height:0;
+    justify-content:center;padding:calc(10.769*var(--u)) calc(9.692*var(--u));
+    gap:calc(5.385*var(--u));font-size:calc(7.618*var(--u));line-height:1.05;
+    border:0;border-radius:calc(4.308*var(--u));background:rgba(39,39,39,.2)
+  }
+  .hero-features li img{width:calc(16.687*var(--u));height:calc(16.696*var(--u));flex-shrink:0}
+  .hero-features li:first-child img{width:calc(14.535*var(--u));height:calc(16.359*var(--u))}
+  .hero-features li:last-child img{width:calc(15.612*var(--u));height:calc(15.619*var(--u))}
+  .hero-visual{
+    width:calc(387.765*var(--u));height:calc(290.573*var(--u));flex:0 0 auto;
+    margin-top:calc(-.235*var(--u));margin-bottom:calc(-8.573*var(--u));left:calc(1.765*var(--u))
+  }
+  .hero-note{
+    z-index:2;right:calc(19.765*var(--u));top:calc(46*var(--u));
+    width:calc(75*var(--u));min-height:calc(71.641*var(--u));
+    padding:calc(9.5*var(--u)) calc(9.026*var(--u));
+    font-size:calc(11.18*var(--u));line-height:normal;border:0;
+    background:rgba(236,78,1,.1);opacity:.8
+  }
+  .hero-note strong:first-of-type{font-weight:700}
+  /* Subtle glass edges from Figma, without the previous bright overlay. */
+  .hero-features li,.hero-note{
+    box-shadow:inset 0 0 0 calc(.5*var(--u)) rgba(255,255,255,.14),inset 0 calc(1*var(--u)) calc(3*var(--u)) rgba(255,255,255,.04);
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)
+  }
+  .hero-actions .button-ghost{border-color:#848484}
+  .hero-actions .button-ghost::before,.hero-features li::before,.hero-note::before{content:none}
+  .hero::after{display:none}
+  /* Figma 507:59: fade over the last part of the image, then solid below.
+     Keep it attached to the artwork so text reflow cannot expose its cut edge. */
+  .hero-visual::after{
+    content:"";position:absolute;z-index:3;pointer-events:none;
+    left:calc(50% - 1.765*var(--u));width:100vw;top:70%;bottom:calc(-200*var(--u));
+    transform:translateX(-50%);
+    background:linear-gradient(180deg,
+      rgba(9,10,12,0) 0,
+      rgba(9,10,12,.06) calc(12*var(--u)),
+      rgba(9,10,12,.3) calc(28*var(--u)),
+      rgba(9,10,12,.66) calc(44*var(--u)),
+      rgba(9,10,12,.9) calc(60*var(--u)),
+      #090a0c calc(76*var(--u)))
+  }
+}
+
+/* Cards de Solucoes: medidas e recortes do Figma 509:1365 (frame de 428px). */
+@media (max-width:520px){
+  .solutions-grid{width:calc(373.892*var(--u));gap:calc(20*var(--u))}
+  .solution-card:nth-child(n){
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    height:calc(157.587*var(--u));min-height:calc(157.587*var(--u));
+    padding:calc(19.218*var(--u))!important;color:#000
+  }
+  .solution-card:nth-child(n) h3{
+    width:calc(214.28*var(--u));max-width:none;margin:0;
+    font-size:calc(26.905*var(--u));line-height:1;letter-spacing:0;
+    text-box-trim:trim-both;text-box-edge:cap alphabetic
+  }
+  .solution-card:nth-child(n) p{
+    width:calc(214.28*var(--u));max-width:none;margin:calc(7.232*var(--u)) 0 0;
+    height:calc(36.514*var(--u));flex:0 0 auto;
+    font-size:calc(9.609*var(--u));line-height:normal;
+    text-box-trim:trim-both;text-box-edge:cap alphabetic
+  }
+  .solution-card.card-portal h3 br{display:none}
+  .solution-card.card-bar h3,.solution-card.card-cashless h3{width:calc(185.453*var(--u))}
+  .solution-card.card-bar p,.solution-card.card-cashless p{width:calc(158.548*var(--u))}
+  .solution-card.card-access h3,.solution-card.card-access p{width:calc(164.313*var(--u))}
+  .solution-card.card-sales h3,.solution-card.card-parking h3{width:calc(223.889*var(--u))}
+  .solution-card.card-parking p{width:calc(186.414*var(--u));height:calc(46.123*var(--u))}
+  .solution-card.card-bar h3,.solution-card.card-bar p,
+  .solution-card.card-cashless h3,.solution-card.card-cashless p,
+  .solution-card.card-access h3,.solution-card.card-access p{margin-left:auto;text-align:right}
+  .solution-card::before{
+    background-size:103.34% 435.61%;background-position:38.62% 26.03%;
+    opacity:.6;mix-blend-mode:normal
+  }
+  .solution-card>img{right:auto;bottom:auto;height:auto;opacity:.8;transform:none;transform-origin:0 0}
+  .solution-card.card-portal img{
+    left:calc(88.055*var(--u));top:calc(.127*var(--u));
+    width:calc(293.032*var(--u));height:calc(156.206*var(--u));object-fit:fill;
+    transform:rotate(.225deg) translate(calc(168.512*var(--u)),calc(-31.294*var(--u))) matrix(.709547,.127916,-.252322,1.399630,0,0)
+  }
+  .solution-card.card-bar img{left:calc(-34.02*var(--u));top:calc(8.63*var(--u));width:calc(207.67*var(--u))}
+  .solution-card.card-report img{left:calc(222.81*var(--u));top:calc(-20.94*var(--u));width:calc(242.94*var(--u))}
+  .solution-card.card-cashless img{left:calc(-12.66*var(--u));top:calc(7.33*var(--u));width:calc(179.41*var(--u))}
+  .solution-card.card-sales img{left:calc(230*var(--u));top:calc(-16.57*var(--u));width:calc(196.1*var(--u));transform:rotate(4.03deg)}
+  .solution-card.card-access img{
+    left:calc(-58.681*var(--u));top:calc(-11.531*var(--u));
+    width:calc(257.12*var(--u));height:calc(220.122*var(--u));object-fit:fill;
+    transform:rotate(.706deg) translate(calc(42.768*var(--u)),calc(-82.854*var(--u))) matrix(.784364,.122555,-.254359,1.627932,0,0)
+  }
+  .solution-card.card-parking img{left:calc(225.91*var(--u));top:calc(-6.55*var(--u));width:calc(187.09*var(--u))}
+}
+
+/* Solucoes mobile: preserva a proporcao dos icones e evita recortes excessivos. */
+@media (max-width:520px){
+  .solution-card.card-portal img{
+    left:auto;right:calc(-12*var(--u));top:calc(5*var(--u));
+    width:calc(148*var(--u));height:auto;object-fit:contain;
+    transform:none;transform-origin:center
+  }
+  .solution-card.card-access img{
+    left:calc(-8*var(--u));right:auto;top:calc(-55*var(--u));bottom:auto;
+    width:calc(180*var(--u));height:auto;object-fit:contain;
+    transform:none;transform-origin:center
+  }
+}

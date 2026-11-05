@@ -1,0 +1,10 @@
+{
+  "name": "suaticketeira-landing",
+  "private": true,
+  "scripts": {
+    "prepare:site": "node scripts/prepare-site.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "check": "node scripts/prepare-site.cjs --check && node --test tests/*.test.cjs"
+  },
+  "engines": { "node": ">=20" }
+}
